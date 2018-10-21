@@ -7,6 +7,7 @@ name = "pypi"
 fbchat = "*"
 pillow = "*"
 gunicorn = "*"
+flask = "*"
 
 [dev-packages]
 
