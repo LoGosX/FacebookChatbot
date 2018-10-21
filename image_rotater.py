@@ -60,9 +60,9 @@ class RotateImage(Personality):
                 client.send(Message(text='No image to rotate.'), thread_id = thread_id, thread_type = thread_type)
                 return
             if d in ['left', 'Left']:
-                degrees = 90
+                degress = 90
             elif d in ['Right', 'right']:
                 degress = 270
             else:
                 degress = 270
-            return self._send_last_image_rotated(client, thread_type = thread_type, thread_id=thread_id, degrees_to_rotate = degrees)
+            return self._send_last_image_rotated(client, thread_type = thread_type, thread_id=thread_id, degrees_to_rotate = degress)
