@@ -2,8 +2,9 @@ import urllib
 from PIL import Image
 from personality import *
 import re
-_IMAGE_FILE = 'image.png'
+from img2txt import img2txt
 
+_IMAGE_FILE = 'image.png'
  
 #taken from
 #https://www.blog.pythonlibrary.org/2017/10/05/how-to-rotate-mirror-photos-with-python/
@@ -50,7 +51,15 @@ class RotateImage(Personality):
                 self._handle_image(client, attachment)
         if not message_object.text:
             return
-        if message_object.text.startswith('Rotate') or message_object.text.startswith('rotate'):
+        if message_object.text == 'img2txt':
+            if not self._last_image:
+                client.send(Message(text = 'No images to convert.'), thread_id = thread_id, thread_type = thread_type)
+            else:
+                ascii_art = img2txt(download_image(self._last_image), (64,64))
+                if ascii_art:
+                    client.send(Message(text = ascii_art), thread_type = thread_type, thread_id = thread_id)
+
+        elif message_object.text.startswith('Rotate') or message_object.text.startswith('rotate'):
             d = message_object.text.split(' ')
             if len(d) >= 2:
                 d = d[1]
