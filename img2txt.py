@@ -3,7 +3,7 @@ from PIL import Image
 
 def img2txt(image_path, output_size):
     try:
-        ascii_spectrum = ' .:-=+*#%@"'
+        ascii_spectrum = '.:-=+*#%@"'
         bins = np.linspace(0, 256, len(ascii_spectrum))
         image = Image.open(image_path)
         #greyscale image

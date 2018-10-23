@@ -51,11 +51,12 @@ class RotateImage(Personality):
                 self._handle_image(client, attachment)
         if not message_object.text:
             return
-        if message_object.text == 'img2txt':
+        if message_object.text.startswith('img2txt'):
             if not self._last_image:
                 client.send(Message(text = 'No images to convert.'), thread_id = thread_id, thread_type = thread_type)
             else:
-                ascii_art = img2txt(download_image(self._last_image), (64,64))
+                size = list(map(int, message_object.text.split(' ')[1:]))
+                ascii_art = img2txt(download_image(self._last_image), size)
                 if ascii_art:
                     client.send(Message(text = ascii_art), thread_type = thread_type, thread_id = thread_id)
 

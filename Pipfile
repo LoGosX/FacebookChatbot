@@ -8,6 +8,7 @@ fbchat = "*"
 pillow = "*"
 gunicorn = "*"
 flask = "*"
+numpy = "*"
 
 [dev-packages]
 
